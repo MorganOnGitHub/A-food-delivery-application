@@ -1,0 +1,24 @@
+<%- include('navbar') %>
+<div id="create">
+    <h2 id="create_title">Create User</h2>
+    <p>Create a User here.</p>
+    <form action="/create_user" method="POST">
+        <br><br>
+        <label for="name">Name</label>
+        <br><br>
+        <input id="name_booking" name="userName" type="text" placeholder="John Doe" pattern="[A-Za-z]{2,30}" required>
+        <br><br>
+        <label id="no_booking" for="Phone Number">Phone Number</label>
+        <br><br>
+        <input type="text" name="userPhone" placeholder="+353" pattern = "[0-9]{10}" required>
+        <br><br>
+        <label for="email">Email</label>
+        <br><br>
+        <input type="email" name="userEmail" placeholder="email@example.ie" required>
+        <br><br>
+        <label for="submit">Create user</label>
+        <input id="create_submit" type="submit">
+        <a href="/">Home</a>
+    </form>
+    <br>
+</div>
