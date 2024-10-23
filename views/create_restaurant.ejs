@@ -1,0 +1,27 @@
+<%- include('navbar') %>
+<div id="create">
+    <h2 id="create_title">Create a Restaurant</h2>
+    <p>Creating a restaurant will allow you to show restaurant details to food lovers.</p>
+    <form action="/create_restaurant" method="POST">
+        <br><br>
+        <label for="restaurant">Create a  with one of our coaches at the next workshop!</label>
+        <br><br>
+        <label for="name">Name</label>
+        <br><br>
+        <input id="name_restaurant" name="restaurantName" type="text" placeholder="John Doe" required>
+        <br><br>
+        <label id="no_restaurant" for="Phone Number">Phone Number</label>
+        <br><br>
+        <input type="text" name="restaurantPhone" placeholder="+353" required>
+        <br><br>
+        <label for="email">Email</label>
+        <br><br>
+        <input type="text" name="restaurantEmail" placeholder="email@example.ie" required>
+        <br><br>
+        <label for="submit">Create booking!</label>
+        <input id="create_submit" type="submit">
+        <a href="index">Home</a>
+    </form> 
+    <br>
+    
+</div>

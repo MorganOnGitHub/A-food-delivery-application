@@ -24,51 +24,63 @@ const userSchema = new mongoose.Schema({
   phone_number: Number,
   date_of_birth: Date
 });
+const User = mongoose.model('User', userSchema);
 
-const Account = mongoose.model('account', userSchema);
+const restSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  phone_number: Number
+});
+const Restaurant = mongoose.model('Restaurant', restSchema); 
 
-app.use(express.urlencoded({ extended: true })); // Allows use of req.body
+app.use(express.urlencoded({ extended: true })); 
 
+// Create user route
 app.post('/create_user', (req, res) => {
-  const name = req.body.userName;
-  const email = req.body.userEmail;
-  const phoneNumber = req.body.userPhone;
-  const date = req.body.userAccountDate;
+  const { userName, userEmail, userPhone, userAccountDate } = req.body;
 
-  
-  const newAccount = new Account({
-    name,
-    email,
-    phone_number: phoneNumber,
-    date_of_birth: date,
+  const newUser = new User({
+    name: userName,
+    email: userEmail,
+    phone_number: userPhone
   });
 
-app.post('/create_restaurant', (req,res) =>{
-  const name = req.body.
-})
-
-  
-  newAccount.save()
+  newUser.save()
     .then(() => {
-      res.send(`Received data and saved to the database: Name - ${name}, Email - ${email}, Phone - ${phoneNumber}, Date - ${date}`);
+      res.send(`Received data and saved to the database: Name - ${userName}, Email - ${userEmail}, Phone - ${userPhone}`);
     })
     .catch(err => {
-      console.error('Error saving Account data: ' + err);
-      res.send('Error saving Account data.');
+      console.error('Error saving User data: ' + err);
+      res.send('Error saving User data.');
+    });
+});
+
+// Create restaurant route
+app.post('/create_restaurant', (req, res) => {
+  const { restaurantName, restaurantEmail, restaurantPhone } = req.body;
+
+  const newRestaurant = new Restaurant({
+    name: restaurantName,
+    email: restaurantEmail,
+    phone_number: restaurantPhone,
+  });
+
+  newRestaurant.save()
+    .then(() => {
+      res.send(`Restaurant data saved: Name - ${restaurantName}, Email - ${restaurantEmail}, Phone - ${restaurantPhone}`);
+    })
+    .catch(err => {
+      console.error('Error saving Restaurant data: ' + err);
+      res.send('Error saving Restaurant data.');
     });
 });
 
 app.set('view engine', 'ejs'); // allows use of res.render
 app.set('views', path.join(__dirname, 'views'));
-
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
   res.render('index');
-});
-
-app.get('/about', (req, res) => {
-  res.render('about');
 });
 
 app.get('/create_user', (req, res) => {
@@ -80,47 +92,50 @@ app.get('/create_restaurant', (req, res) => {
 });
 
 app.get('/viewAccounts', async (req, res) => {
-  const Accounts = await Account.find({});
-  res.render('viewAccounts', { Accounts });
+  const Users = await User.find({});
+  res.render('viewAccounts', { Users }); 
 });
 
-app.get('/edit/:AccountId', async (req, res) => {
-  const AccountId = req.params.AccountId;
+app.get('/edit/:UserId', async (req, res) => {
+  const UserId = req.params.UserId;
 
   try {
-      const Account = await Account.findById(AccountId);
-      res.render('edit', { Account });
+      const user = await User.findById(UserId);
+      res.render('edit', { user });
   } catch (err) {
-      console.error('Error retrieving Account for edit: ' + err);
-      res.send('Error retrieving Account for edit.');
+      console.error('Error retrieving User for edit: ' + err);
+      res.send('Error retrieving User for edit.');
   }
 });
 
-app.post('/edit/:AccountId', async (req, res) => {
-  const AccountId = req.params.AccountId;
+app.post('/edit/:UserId', async (req, res) => {
+  const UserId = req.params.UserId;
 
   try {
-      await Account.findByIdAndUpdate(AccountId, req.body);
+      await User.findByIdAndUpdate(UserId, req.body);
       res.redirect('/viewAccounts');
   } catch (err) {
-      console.error('Error updating Account: ' + err);
-      res.send('Error updating Account.');
+      console.error('Error updating User: ' + err);
+      res.send('Error updating User.');
   }
 });
 
-app.post('/delete/:AccountId', async (req, res) => {
-  const AccountId = req.params.AccountId;
+app.post('/delete/:UserId', async (req, res) => {
+  const UserId = req.params.UserId;
 
   try {
-      await Account.findByIdAndDelete(AccountId);
+      await User.findByIdAndDelete(UserId);
       res.redirect('/viewAccounts');
   } catch (err) {
-      console.error('Error deleting Account: ' + err);
-      res.send('Error deleting Account.');
+      console.error('Error deleting User: ' + err);
+      res.send('Error deleting User.');
   }
 });
 
 app.post('/viewAccounts', async (req, res) => {
-  const Accounts = await Account.find({name: req.body.user_name,  date_of_birth: {$gte: req.body.start_date, $lte: req.body.end_date}});
-  res.render('viewAccounts', { Accounts });
+  const Users = await User.find({
+    name: req.body.user_name,  
+    date_of_birth: { $gte: req.body.start_date, $lte: req.body.end_date }
+  });
+  res.render('viewAccounts', { Users });
 });
