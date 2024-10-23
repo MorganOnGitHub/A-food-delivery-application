@@ -91,9 +91,3 @@ app.get('/create_user', (req, res) => {
 app.get('/create_restaurant', (req, res) => {
   res.render('create_restaurant');
 });
-
-app.get('/viewAccounts', async (req, res) => {
-  const Users = await User.find({});
-  res.render('viewAccounts', { Users }); 
-});
-
