@@ -7,6 +7,8 @@ app.listen(3000, () => {
   console.log('Server is running on port 3000');
 });
 
+app.set('view engine', 'ejs');
+
 const url = 'mongodb://127.0.0.1/accounts';
 mongoose.connect(url)
   .then(() => {
@@ -27,7 +29,7 @@ const Account = mongoose.model('account', userSchema);
 
 app.use(express.urlencoded({ extended: true })); // Allows use of req.body
 
-app.post('/create', (req, res) => {
+app.post('/create_user', (req, res) => {
   const name = req.body.userName;
   const email = req.body.userEmail;
   const phoneNumber = req.body.userPhone;
@@ -40,6 +42,10 @@ app.post('/create', (req, res) => {
     phone_number: phoneNumber,
     date_of_birth: date,
   });
+
+app.post('/create_restaurant', (req,res) =>{
+  const name = req.body.
+})
 
   
   newAccount.save()
