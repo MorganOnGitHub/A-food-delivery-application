@@ -73,48 +73,4 @@ app.get('/create_restaurant', (req, res) => {
   res.render('create_restaurant');
 });
 
-app.get('/viewAccounts', async (req, res) => {
-  const Accounts = await Account.find({});
-  res.render('viewAccounts', { Accounts });
-});
 
-app.get('/edit/:AccountId', async (req, res) => {
-  const AccountId = req.params.AccountId;
-
-  try {
-      const Account = await Account.findById(AccountId);
-      res.render('edit', { Account });
-  } catch (err) {
-      console.error('Error retrieving Account for edit: ' + err);
-      res.send('Error retrieving Account for edit.');
-  }
-});
-
-app.post('/edit/:AccountId', async (req, res) => {
-  const AccountId = req.params.AccountId;
-
-  try {
-      await Account.findByIdAndUpdate(AccountId, req.body);
-      res.redirect('/viewAccounts');
-  } catch (err) {
-      console.error('Error updating Account: ' + err);
-      res.send('Error updating Account.');
-  }
-});
-
-app.post('/delete/:AccountId', async (req, res) => {
-  const AccountId = req.params.AccountId;
-
-  try {
-      await Account.findByIdAndDelete(AccountId);
-      res.redirect('/viewAccounts');
-  } catch (err) {
-      console.error('Error deleting Account: ' + err);
-      res.send('Error deleting Account.');
-  }
-});
-
-app.post('/viewAccounts', async (req, res) => {
-  const Accounts = await Account.find({name: req.body.user_name,  date_of_birth: {$gte: req.body.start_date, $lte: req.body.end_date}});
-  res.render('viewAccounts', { Accounts });
-});
