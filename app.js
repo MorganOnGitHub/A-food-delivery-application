@@ -7,8 +7,6 @@ app.listen(3000, () => {
   console.log('Server is running on port 3000');
 });
 
-app.set('view engine', 'ejs');
-
 const url = 'mongodb://127.0.0.1/accounts';
 mongoose.connect(url)
   .then(() => {
@@ -35,7 +33,6 @@ const Restaurant = mongoose.model('Restaurant', restSchema);
 
 app.use(express.urlencoded({ extended: true })); 
 
-// Create user route
 app.post('/create_user', (req, res) => {
   const { userName, userEmail, userPhone, userAccountDate } = req.body;
 
@@ -55,7 +52,6 @@ app.post('/create_user', (req, res) => {
     });
 });
 
-// Create restaurant route
 app.post('/create_restaurant', (req, res) => {
   const { restaurantName, restaurantEmail, restaurantPhone } = req.body;
 

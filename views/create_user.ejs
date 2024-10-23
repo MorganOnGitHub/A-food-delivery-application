@@ -1,18 +1,16 @@
 <%- include('navbar') %>
 <div id="create">
     <h2 id="create_title">Create User</h2>
-    <p>Creating a booking will allow you to attend a workshop in the future to further your expertise in HTML.</p>
+    <p>Create a User here.</p>
     <form action="/create_user" method="POST">
-        <br><br>
-        <label for="booking">Create a booking with one of our coaches at the next workshop!</label>
         <br><br>
         <label for="name">Name</label>
         <br><br>
-        <input id="name_booking" name="userName" type="text" placeholder="John Doe" required>
+        <input id="name_booking" name="userName" type="text" placeholder="John Doe" pattern="[A-Za-z]{2,30}" required>
         <br><br>
         <label id="no_booking" for="Phone Number">Phone Number</label>
         <br><br>
-        <input type="text" name="userPhone" placeholder="+353" required>
+        <input type="text" name="userPhone" placeholder="+353" pattern = "[0-9]{7,15}" required>
         <br><br>
         <label for="email">Email</label>
         <br><br>
