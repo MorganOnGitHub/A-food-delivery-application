@@ -15,7 +15,6 @@ mongoose.connect(url)
   .catch(err => {
     console.error('Error connecting to Foodfaster.ai Database: ' + err);
   });
-
 const userSchema = new mongoose.Schema({
   name: String,
   email: String,
