@@ -33,24 +33,29 @@ const Restaurant = mongoose.model('Restaurant', restSchema);
 
 app.use(express.urlencoded({ extended: true })); 
 
-app.post('/create_user', (req, res) => {
+app.post('/create_user', async (req, res) => {
   const { userName, userEmail, userPhone, userAccountDate } = req.body;
 
-  const newUser = new User({
-    name: userName,
-    email: userEmail,
-    phone_number: userPhone
-  });
-
-  newUser.save()
-    .then(() => {
-      res.send(`Received data and saved to the database: Name - ${userName}, Email - ${userEmail}, Phone - ${userPhone}`);
-    })
-    .catch(err => {
-      console.error('Error saving User data: ' + err);
-      res.send('Error saving User data.');
+  try {
+    // checks if user has already used email
+    const existingUser = await User.findOne({ email: userEmail });
+    
+    if (existingUser) {
+      return res.send('Error: A user with this email already exists.');
+    }
+    const newUser = new User({
+      name: userName,
+      email: userEmail,
+      phone_number: userPhone
     });
+    await newUser.save();
+    res.send(`Received data and saved to the database: Name - ${userName}, Email - ${userEmail}, Phone - ${userPhone}`);
+  } catch (err) {
+    console.error('Error saving User data: ' + err);
+    res.send('Error saving User data.');
+  }
 });
+
 
 app.post('/create_restaurant', (req, res) => {
   const { restaurantName, restaurantEmail, restaurantPhone } = req.body;
