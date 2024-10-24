@@ -8,17 +8,21 @@
         <br><br>
         <label for="name">Name</label>
         <br><br>
-        <input id="name_restaurant" name="restaurantName" type="text" placeholder="John Doe" required>
+        <input id="name_restaurant" name="restaurantName" type="text" placeholder="John Doe"  pattern="[A-Za-z]{2,50}" required>
         <br><br>
         <label id="no_restaurant" for="Phone Number">Phone Number</label>
         <br><br>
-        <input type="text" name="restaurantPhone" placeholder="+353" required>
+        <input type="text" name="restaurantPhone" placeholder="+353" required pattern="[0-9]{10}">
         <br><br>
         <label for="email">Email</label>
         <br><br>
         <input type="email" name="restaurantEmail" placeholder="email@example.ie" required>
         <br><br>
-        <label for="submit">Create booking!</label>
+        <label for = "location">Location</label>
+        <br><br>
+        <input type = "text" name="restaurantLocation" placeholder="Co.Cork" required>
+        <br><br>
+        <label for="submit">Create restaurant</label>
         <input id="create_submit" type="submit">
         <a href="index">Home</a>
     </form> 
