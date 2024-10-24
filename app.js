@@ -16,6 +16,7 @@ mongoose.connect(url)
     console.error('Error connecting to Foodfaster.ai Database: ' + err);
   });
 const userSchema = new mongoose.Schema({
+  username : String,
   name: String,
   email: String,
   phone_number: Number,
@@ -33,7 +34,7 @@ const Restaurant = mongoose.model('Restaurant', restSchema);
 app.use(express.urlencoded({ extended: true })); 
 
 app.post('/create_user', async (req, res) => {
-  const { userName, userEmail, userPhone, userAccountDate } = req.body;
+  const {usersName, userEmail, userPhone } = req.body;
 
   try {
     // checks if user has already used email
@@ -43,12 +44,13 @@ app.post('/create_user', async (req, res) => {
       return res.send('Error: A user with this email already exists.');
     }
     const newUser = new User({
-      name: userName,
+      username: UserName,
+      name: usersName,
       email: userEmail,
       phone_number: userPhone
     });
     await newUser.save();
-    res.send(`Received data and saved to the database: Name - ${userName}, Email - ${userEmail}, Phone - ${userPhone}`);
+    res.send(`Received data and saved to the database: Name - ${usersName}, Email - ${userEmail}, Phone - ${userPhone}`);
   } catch (err) {
     console.error('Error saving User data: ' + err);
     res.send('Error saving User data.');
