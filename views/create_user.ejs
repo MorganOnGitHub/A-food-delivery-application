@@ -8,19 +8,27 @@
         <br><br>
         <input id="name_booking" name="usersName" type="text" placeholder="John Doe" pattern="[A-Za-z]{2,30}" required>
         <br><br>
-        <label for = "Username"> Username</label>
+        <label for="Username">Username</label>
         <br><br>
-        <input id="username_booking" name = "UserName" type = "text" placeholder = "John101" pattern="[A-Za-z0-9]{2,30}" required>
+        <input id="username_booking" name="UserName" type="text" placeholder="John101" pattern="[A-Za-z0-9]{2,30}" required>
         <br><br>
         <label id="no_booking" for="Phone Number">Phone Number</label>
         <br><br>
-        <input type="text" name="userPhone" placeholder="+353" pattern = "[0-9]{10}" required>
+        <input type="text" name="userPhone" placeholder="1234567890" pattern="[0-9]{10}" required>
         <br><br>
         <label for="email">Email</label>
         <br><br>
         <input type="email" name="userEmail" placeholder="email@example.ie" required>
         <br><br>
-        <label for="submit">Create user</label>
+        <label for="password">Password</label>
+        <br><br>
+        <input type="password" name="userPassword" placeholder="Enter password" required>
+        <br><br>
+        <label for="confirm_password">Confirm Password</label>
+        <br><br>
+        <input type="password" name="confirmPassword" placeholder="Confirm password" required>
+        <br><br>
+        <label for="submit">Create User</label>
         <input id="create_submit" type="submit">
         <a href="/">Home</a>
     </form>
