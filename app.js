@@ -12,14 +12,16 @@ mongoose.connect(url)
     console.error('Error connecting to Foodfaster.ai Database: ' + err);
   });
 
+// Define User Schema
 const userSchema = new mongoose.Schema({
   name: String,
   email: { type: String, required: true, unique: true },
   phone_number: { type: Number, required: true },
-  password: { type: String, required: true } // Store password in plaintext
+  password: { type: String, required: true } 
 });
 const User = mongoose.model('User', userSchema);
 
+// Define Restaurant Schema
 const restSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -68,12 +70,10 @@ app.get('/create_restaurant', (req, res) => {
 app.post('/create_user', async (req, res) => {
   const { usersName, UserName, userPhone, userEmail, userPassword } = req.body;
 
-  // Check for required fields
   if (!usersName || !UserName || !userPhone || !userEmail || !userPassword) {
     return res.status(400).send('Error: All fields (name, username, phone, email, password) are required.');
   }
 
-  // Validate name and username formats
   if (!/^[A-Za-z]{2,30}$/.test(usersName)) {
     return res.status(400).send('Error: Name must be 2 to 30 characters long and only contain letters.');
   }
@@ -100,7 +100,7 @@ app.post('/create_user', async (req, res) => {
     username: UserName,
     phone_number: userPhone,
     email: userEmail,
-    password: userPassword // Store password as plaintext
+    password: userPassword
   });
 
   try {
@@ -110,6 +110,83 @@ app.post('/create_user', async (req, res) => {
     console.error('Error creating user: ' + err);
     res.status(500).send('Error creating user.');
   }
+});
+
+// Search user by email
+app.get('/search/email/:email', async (req, res) => {
+    try {
+        const email = req.params.email;
+        
+        if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+            return res.status(400).json({
+                success: false,
+                message: 'Invalid email format'
+            });
+        }
+
+        const user = await User.findOne({ email: email });
+        
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: 'User not found'
+            });
+        }
+
+        res.json({
+            success: true,
+            user: {
+                name: user.name,
+                email: user.email,
+                phone_number: user.phone_number
+            }
+        });
+    } catch (err) {
+        console.error('Error searching user by email:', err);
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
+    }
+});
+
+app.get('/search/name/:name', async (req, res) => {
+    try {
+        const name = req.params.name;
+        
+        if (!name || name.length < 2) {
+            return res.status(400).json({
+                success: false,
+                message: 'Name must be at least 2 characters long'
+            });
+        }
+
+        const users = await User.find({
+            name: { $regex: name, $options: 'i' } 
+        });
+        
+        if (users.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: 'No users found'
+            });
+        }
+
+        res.json({
+            success: true,
+            users: users.map(user => ({
+                name: user.name,
+                email: user.email,
+                phone_number: user.phone_number
+            }))
+        });
+    } catch (err) {
+        console.error('Error searching users by name:', err);
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
+    }
 });
 
 app.post('/create_restaurant', async (req, res) => {
@@ -228,8 +305,6 @@ app.post('/change-password', async (req, res) => {
         message: 'All fields are required'
       });
     }
-
-    // No password length check as we are not hashing
     const user = await User.findOne({ email });
     if (!user) {
       return res.render('change-password', {
@@ -237,7 +312,7 @@ app.post('/change-password', async (req, res) => {
       });
     }
 
-    user.password = newPassword; // Store new password as plaintext
+    user.password = newPassword; 
     await user.save();
 
     res.render('change-password', {
