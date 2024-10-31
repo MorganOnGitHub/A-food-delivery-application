@@ -1,0 +1,44 @@
+<%- include('navbar') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <title>Create User</title>
+</head>
+<body>
+    <div id="create">
+        <h2 id="create_title">Create User</h2>
+        <p>Create a User here.</p>
+        
+        <!-- Update action to post to the correct route -->
+        <form action="/users/create_user" method="POST">
+            <br><br>
+            <!-- Name Field -->
+            <label for="name">Name</label>
+            <br><br>
+            <input id="name" name="name" type="text" placeholder="John Doe" pattern="[A-Za-z ]{2,30}" required>
+            <br><br>
+
+            <!-- Phone Number Field -->
+            <label for="phone_number">Phone Number</label>
+            <br><br>
+            <input type="text" name="phone_number" placeholder="+353" pattern="[0-9]{10}" required>
+            <br><br>
+
+            <!-- Email Field -->
+            <label for="email">Email</label>
+            <br><br>
+            <input type="email" name="email" placeholder="email@example.ie" required>
+            <br><br>
+
+            <!-- Submit Button -->
+            <label for="submit">Create user</label>
+            <input id="create_submit" type="submit">
+            <a href="/">Home</a>
+        </form>
+        <br>
+    </div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<%- include('navbar') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <title>Create Restaurant</title>
+</head>
+<body>
+    <div id="create">
+        <h2 id="create_title">Create a Restaurant</h2>
+        <p>Creating a restaurant will allow you to show restaurant details to food lovers.</p>
+        
+        <form id="restaurantForm" action="/restaurants/create_restaurant" method="POST">
+            <br><br>
+            <label for="restaurant">Restaurant Details</label>
+            <br><br>
+            
+            <!-- Restaurant Name Field -->
+            <label for="name">Name</label>
+            <br><br>
+            <input id="name_restaurant" name="restaurantName" type="text" placeholder="Enter Restaurant Name" minlength="2" maxlength="50" required>
+            <small id="nameError" class="error-message"></small>
+            <br><br>
+            
+            <!-- Phone Number Field -->
+            <label for="Phone Number">Phone Number</label>
+            <br><br>
+            <input type="text" id="restaurantPhone" name="restaurantPhone" placeholder="Enter 10 digit phone number" pattern="^\d{10}$" required>
+            <small id="phoneError" class="error-message"></small>
+            <br><br>
+            
+            <!-- Email Field -->
+            <label for="email">Email</label>
+            <br><br>
+            <input type="email" id="restaurantEmail" name="restaurantEmail" placeholder="email@example.ie" required>
+            <small id="emailError" class="error-message"></small>
+            <br><br>
+            
+            <!-- Location Field -->
+            <label for="location">Location</label>
+            <br><br>
+            <input type="text" id="restaurantLocation" name="restaurantLocation" placeholder="Enter Restaurant Location" required>
+            <small id="locationError" class="error-message"></small>
+            <br><br>
+            
+            <!-- Submit Button -->
+            <label for="submit">Create Restaurant</label>
+            <input id="create_submit" type="submit">
+            <a href="/">Home</a>
+        </form>
+        <br>
+    </div>
+
+    <!-- Client-side validation script -->
+    <script>
+        document.getElementById('restaurantForm').addEventListener('submit', function(event) {
+            let isValid = true;
+
+            // Validate Restaurant Name
+            const nameField = document.getElementById('name_restaurant');
+            const nameError = document.getElementById('nameError');
+            if (nameField.value.length < 2 || nameField.value.length > 50) {
+                nameError.textContent = "Restaurant name must be between 2 and 50 characters.";
+                isValid = false;
+            } else {
+                nameError.textContent = "";
+            }
+
+            // Validate Phone Number
+            const phoneField = document.getElementById('restaurantPhone');
+            const phoneError = document.getElementById('phoneError');
+            const phonePattern = /^\d{10}$/;
+            if (!phonePattern.test(phoneField.value)) {
+                phoneError.textContent = "Phone number must be exactly 10 digits.";
+                isValid = false;
+            } else {
+                phoneError.textContent = "";
+            }
+
+            // Validate Email
+            const emailField = document.getElementById('restaurantEmail');
+            const emailError = document.getElementById('emailError');
+            const emailPattern = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+            if (!emailPattern.test(emailField.value)) {
+                emailError.textContent = "Invalid email format.";
+                isValid = false;
+            } else {
+                emailError.textContent = "";
+            }
+
+            // Validate Location
+            const locationField = document.getElementById('restaurantLocation');
+            const locationError = document.getElementById('locationError');
+            if (locationField.value.trim() === "") {
+                locationError.textContent = "Location is required.";
+                isValid = false;
+            } else {
+                locationError.textContent = "";
+            }
+
+            if (!isValid) {
+                event.preventDefault();  // Prevent form submission if validation fails
+            }
+        });
+    </script>
+</body>
+</html>
