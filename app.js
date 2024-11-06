@@ -12,6 +12,7 @@ mongoose.connect(url)
     console.error('Error connecting to Foodfaster.ai Database: ' + err);
   });
 
+
 // Define User Schema
 const userSchema = new mongoose.Schema({
   name: String,
@@ -324,4 +325,33 @@ app.post('/change-password', async (req, res) => {
       message: 'Internal server error'
     });
   }
+});
+
+const { verifyAdmin } = require('./auth');
+
+app.get('/admin_signin', (req, res) => {
+  res.render('admin_signin', { message: null });
+});
+
+app.post('/admin_signin', async (req, res) => {
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+    return res.render('admin_signin', { message: 'Username and password are required.' });
+  }
+
+  const result = await verifyAdmin(username, password);
+
+  if (!result.success) {
+    return res.render('admin_signin', { message: result.message });
+  }
+  res.redirect('/admin_index');
+});
+
+app.get('/admin_index', (req, res)=> {
+  res.render('admin_index');
+});
+
+app.get('/search', (req, res)=>{
+  res.render('search');
 });
