@@ -1,13 +1,17 @@
 <%- include('admin_navbar') %>
-<div id="search">
-    <h2>Search User</h2>
-    <form action="/search" method="GET">
-        <label for="email">Email:</label>
-        <input type="text" name="email" placeholder="user@example.com">
-        <br><br>
-        <label for="name">Name:</label>
-        <input type="text" name="name" placeholder="John Doe">
-        <br><br>
+<body>
+    <h1>Search for User</h1>
+    <form action="/search/email" method="get">
+        <input type="email" name="email" placeholder="Enter email" required>
         <button type="submit">Search</button>
+        
     </form>
-</div>
+    <form action="/search/name" method="GET">
+        <label for="name">Search by Name:</label>
+        <input type="text" name="name" id="name" required>
+        <button type="submit">Search</button>
+      </form>
+      
+    
+  </body>
+  </html>

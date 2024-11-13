@@ -113,3 +113,8 @@ button{
 input[type=submit]{
     color:black;
 }
+div{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}

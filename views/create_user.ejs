@@ -2,8 +2,7 @@
 <div id="create">
     <h2 id="create_title">Create User</h2>
     <p>Create a User here.</p>
-    <form action="/create_user" method="POST">
-        <br><br>
+    <form action="/create_user" method="POST" enctype="multipart/form-data">
         <label for="name">Name</label>
         <br><br>
         <input id="name_booking" name="usersName" type="text" placeholder="John Doe" pattern="[A-Za-z]{2,30}" required>
@@ -28,9 +27,11 @@
         <br><br>
         <input type="password" name="confirmPassword" placeholder="Confirm password" required>
         <br><br>
-        <label for="submit">Create User</label>
-        <input id="create_submit" type="submit">
+        <label for="image">Profile Image</label>
+        <br><br>
+        <input type="file" name="image" accept="image/*" required>
+        <br><br>
+        <input id="create_submit" type="submit" value="Create User">
         <a href="/">Home</a>
     </form>
-    <br>
 </div>

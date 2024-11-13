@@ -1,0 +1,17 @@
+<%- include('navbar') %>
+<div id="user_signin">
+    <h2>User Sign In</h2>
+    <form action="/user_signin" method="POST">
+        <label for="email">Email:</label>
+        <br>
+        <input type="email" name="email" placeholder="email@example.com" required>
+        <br><br>
+
+        <label for="password">Password:</label>
+        <br>
+        <input type="password" name="password" placeholder="Enter password" required>
+        <br><br>
+
+        <input type="submit" value="Sign In">
+    </form>
+</div>
