@@ -18,7 +18,8 @@ const userSchema = new mongoose.Schema({
   name: String,
   email: { type: String, required: true, unique: true },
   phone_number: { type: Number, required: true },
-  password: { type: String, required: true } 
+  password: { type: String, required: true },
+  image: { type: String }
 });
 const User = mongoose.model('User', userSchema);
 
@@ -354,4 +355,37 @@ app.get('/admin_index', (req, res)=> {
 
 app.get('/search', (req, res)=>{
   res.render('search');
+});
+
+app.get('/admin_search_user', (req, res) => {
+  res.render('search');
+});
+
+app.get('/admin_view_user/:id', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+
+    if (!user) {
+      return res.status(404).render('searchResults', { 
+        message: 'User not found', 
+        user: null 
+      });
+    }
+
+    res.render('searchResults', {
+      message: null, // No error message if user is found
+      user: {
+        name: user.name,
+        email: user.email,
+        phone_number: user.phone_number,
+        image: user.image
+      }
+    });
+  } catch (err) {
+    console.error('Error fetching user:', err);
+    res.status(500).render('searchResults', { 
+      message: 'Internal server error', 
+      user: null 
+    });
+  }
 });
