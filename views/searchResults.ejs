@@ -7,7 +7,13 @@
                 <li>
                     <strong>Name:</strong> <%= user.name %> <br>
                     <strong>Email:</strong> <%= user.email %> <br>
-                    <strong>Phone Number:</strong> <%= user.phone_number %> <br>
+                    <p><strong>Phone:</strong> <%= user.phone_number %></p><br>
+                    <% if (user.image) { %>
+                      <p><strong>Image:</strong></p>
+                      <img src="/<%= user.image %>" alt="User Image" width="200" />
+                    <% } else { %>
+                      <p>No image available.</p>
+                    <% } %>
                 </li>
             <% }) %>
         </ul>
