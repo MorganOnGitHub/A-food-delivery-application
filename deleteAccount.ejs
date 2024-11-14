@@ -1,0 +1,287 @@
+<%- include('navbar') %>
+<div id="delete-account-container">
+    <h2>Delete Account</h2>
+    <div class="warning-message">
+        <p>⚠️ Warning: Account Deletion</p>
+        <ul>
+            <li>This action permanently removes your account and all associated data</li>
+            <li>This action cannot be undone</li>
+            <li>Any active sessions will be terminated</li>
+        </ul>
+    </div>
+
+    <form id="deleteAccountForm">
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                title="Please enter a valid email address"
+            >
+            <div class="error-message" id="emailError"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                required
+                minlength="8"
+            >
+            <div class="error-message" id="passwordError"></div>
+        </div>
+
+        <div class="confirmation-checkbox">
+            <label class="checkbox-container">
+                <input type="checkbox" id="confirmDelete" required>
+                <span class="checkbox-text">I understand that this action is permanent and cannot be undone</span>
+            </label>
+            <div class="error-message" id="confirmError"></div>
+        </div>
+
+        <div class="button-group">
+            <button type="submit" class="delete-btn" id="deleteButton" disabled>Delete My Account</button>
+            <a href="/" class="cancel-btn">Cancel</a>
+        </div>
+
+        <div id="globalError" class="error-message global-error"></div>
+    </form>
+</div>
+
+<style>
+    #delete-account-container {
+        max-width: 500px;
+        margin: 40px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .warning-message {
+        background: #fff3cd;
+        border: 1px solid #ffeeba;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 4px;
+    }
+
+    .warning-message ul {
+        margin: 10px 0 0 20px;
+        padding: 0;
+    }
+
+    .warning-message li {
+        margin: 5px 0;
+        color: #856404;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    .form-group input:focus {
+        outline: none;
+        border-color: #80bdff;
+        box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+    }
+
+    .confirmation-checkbox {
+        margin: 20px 0;
+    }
+
+    .checkbox-container {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .checkbox-text {
+        margin-left: 8px;
+        color: #dc3545;
+        font-weight: 500;
+    }
+
+    .error-message {
+        color: #dc3545;
+        font-size: 14px;
+        margin-top: 5px;
+        display: none;
+    }
+
+    .global-error {
+        background-color: #f8d7da;
+        border: 1px solid #f5c6cb;
+        padding: 10px;
+        margin-top: 20px;
+        border-radius: 4px;
+        text-align: center;
+    }
+
+    .button-group {
+        margin-top: 20px;
+        display: flex;
+        gap: 10px;
+    }
+
+    .delete-btn {
+        background: #dc3545;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        flex: 1;
+        transition: background-color 0.2s;
+    }
+
+    .delete-btn:disabled {
+        background: #e9a9af;
+        cursor: not-allowed;
+    }
+
+    .delete-btn:hover:not(:disabled) {
+        background: #c82333;
+    }
+
+    .cancel-btn {
+        background: #6c757d;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 4px;
+        text-decoration: none;
+        text-align: center;
+        flex: 1;
+        transition: background-color 0.2s;
+    }
+
+    .cancel-btn:hover {
+        background: #5a6268;
+        text-decoration: none;
+        color: white;
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('deleteAccountForm');
+    const confirmCheckbox = document.getElementById('confirmDelete');
+    const deleteButton = document.getElementById('deleteButton');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+
+    function validateForm() {
+        const isEmailValid = emailInput.checkValidity();
+        const isPasswordValid = passwordInput.checkValidity();
+        const isConfirmed = confirmCheckbox.checked;
+        
+        deleteButton.disabled = !(isEmailValid && isPasswordValid && isConfirmed);
+    }
+
+    [emailInput, passwordInput, confirmCheckbox].forEach(element => {
+        element.addEventListener('change', validateForm);
+        element.addEventListener('input', validateForm);
+    });
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Reset all error messages
+        document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+        
+        // Get form data
+        const formData = {
+            email: emailInput.value.trim(),
+            password: passwordInput.value,
+            confirmed: confirmCheckbox.checked
+        };
+
+        // Validate fields
+        let hasErrors = false;
+
+        if (!formData.email) {
+            const emailError = document.getElementById('emailError');
+            emailError.textContent = 'Email is required';
+            emailError.style.display = 'block';
+            hasErrors = true;
+        }
+
+        if (!formData.password) {
+            const passwordError = document.getElementById('passwordError');
+            passwordError.textContent = 'Password is required';
+            passwordError.style.display = 'block';
+            hasErrors = true;
+        }
+
+        if (!formData.confirmed) {
+            const confirmError = document.getElementById('confirmError');
+            confirmError.textContent = 'You must confirm the account deletion';
+            confirmError.style.display = 'block';
+            hasErrors = true;
+        }
+
+        if (hasErrors) return;
+
+        // Double confirmation
+        if (!confirm('Are you absolutely sure you want to delete your account? This action cannot be undone.')) {
+            return;
+        }
+
+        try {
+            deleteButton.disabled = true;
+            deleteButton.textContent = 'Deleting...';
+
+            const response = await fetch('/user/delete-request', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    userId: formData.email, // Using email as userId for this example
+                    password: formData.password
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                // Show success message briefly before redirect
+                const globalError = document.getElementById('globalError');
+                globalError.style.backgroundColor = '#d4edda';
+                globalError.style.borderColor = '#c3e6cb';
+                globalError.style.color = '#155724';
+                globalError.textContent = 'Account successfully deleted. Redirecting...';
+                globalError.style.display = 'block';
+
+                setTimeout(() => window.location.href = '/logout', 2000);
+            } else {
+                throw new Error(data.message || 'Failed to delete account');
+            }
+        } catch (error) {
+            const globalError = document.getElementById('globalError');
+            globalError.textContent = error.message || 'An error occurred. Please try again.';
+            globalError.style.display = 'block';
+            deleteButton.disabled = false;
+            deleteButton.textContent = 'Delete My Account';
+        }
+    });
+});
+</script>
