@@ -1,3 +1,4 @@
+// models/restaurant.js
 const mongoose = require('mongoose');
 
 const restaurantSchema = new mongoose.Schema({
@@ -20,8 +21,12 @@ const restaurantSchema = new mongoose.Schema({
   location: {
     type: String,
     required: true
+  },
+  cuisine: {
+    type: String,
+    required: true
   }
 });
 
-module.exports = mongoose.model('Restaurant', restaurantSchema);
-
+// Check if the model already exists, and if not, create it
+module.exports = mongoose.models.Restaurant || mongoose.model('Restaurant', restaurantSchema);

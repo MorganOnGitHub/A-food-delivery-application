@@ -1,0 +1,19 @@
+<!-- views/search.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Search Restaurants</title>
+</head>
+<body>
+  <h1>Search for a Restaurant by Cuisine</h1>
+  <form action="/restaurants/search" method="GET">
+    <input type="text" name="cuisine" id="cuisineInput" placeholder="Enter cuisine type..." autocomplete="off">
+    <div id="suggestions" class="suggestions-box"></div>
+    <button type="submit">Search</button>
+  </form>
+  <script src="/js/search.js"></script>
+</body>
+</html>

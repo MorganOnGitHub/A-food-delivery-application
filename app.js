@@ -5,6 +5,7 @@ const app = express();
 
 const userRoutes = require('./routes/userRoutes');
 const restaurantRoutes = require('./routes/restaurantRoutes');
+const apiRoutes = require('./routes/api'); // Import the new API routes for suggestions
 
 app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
@@ -19,6 +20,7 @@ mongoose.connect('mongodb://127.0.0.1/accounts')
 // Routes
 app.use('/users', userRoutes);
 app.use('/restaurants', restaurantRoutes);
+app.use('/api', apiRoutes); // Use the new API routes
 
 // Home route
 app.get('/', (req, res) => {
