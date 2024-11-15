@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="eng">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +9,42 @@
 <body>
     <%- include('navbar') %> <!-- Navbar inclusion -->
     <h1>Welcome to FoodFaster.ai</h1>
+    
+    <!-- Links to user and restaurant management pages -->
     <a href="/users/create_user">Create User</a>
     <a href="/restaurants/create_restaurant">Create Restaurant</a>
     <a href="/restaurants/delete_restaurant">Delete Restaurant</a>
+    
+    <!-- Search bar for cuisines with auto-suggestions -->
+    <div class="search-container">
+        <label for="cuisineInput">Search Restaurants by Cuisine:</label>
+        <input type="text" id="cuisineInput" placeholder="Type cuisine..." autocomplete="off">
+        <div id="suggestions" class="suggestions"></div>
+    </div>
+
+    <!-- Link to view all restaurants -->
+    <a href="/restaurants">View All Restaurants</a>
+
+    <!-- Display a list of restaurants and their opening times -->
+    <h2>Our Featured Restaurants</h2>
+    <div id="restaurantList">
+        <ul>
+            <!-- Loop through all restaurants and display their names and opening times -->
+            <% restaurants.forEach(restaurant => { %>
+                <li>
+                    <a href="/restaurants/<%= restaurant._id %>"><%= restaurant.name %></a>
+                    <p>Opening Times:</p>
+                    <ul>
+                        <% for (const [day, time] of Object.entries(restaurant.openingTimes)) { %>
+                            <li><%= day %>: <%= time %></li>
+                        <% } %>
+                    </ul>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+
+    <!-- JavaScript for handling the auto-suggestions -->
+    <script src="/js/search.js"></script>
 </body>
 </html>

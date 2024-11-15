@@ -44,7 +44,24 @@
             <input type="text" id="restaurantLocation" name="restaurantLocation" placeholder="Enter Restaurant Location" required>
             <small id="locationError" class="error-message"></small>
             <br><br>
-            
+
+            <!-- Opening Times Fields -->
+            <label for="openingTimes">Opening Times (e.g., "09:00 - 17:00"):</label><br><br>
+            <label for="monday">Monday:</label>
+            <input type="text" name="openingTimes[Monday]" required><br>
+            <label for="tuesday">Tuesday:</label>
+            <input type="text" name="openingTimes[Tuesday]" required><br>
+            <label for="wednesday">Wednesday:</label>
+            <input type="text" name="openingTimes[Wednesday]" required><br>
+            <label for="thursday">Thursday:</label>
+            <input type="text" name="openingTimes[Thursday]" required><br>
+            <label for="friday">Friday:</label>
+            <input type="text" name="openingTimes[Friday]" required><br>
+            <label for="saturday">Saturday:</label>
+            <input type="text" name="openingTimes[Saturday]" required><br>
+            <label for="sunday">Sunday:</label>
+            <input type="text" name="openingTimes[Sunday]" required><br>
+
             <!-- Submit Button -->
             <label for="submit">Create Restaurant</label>
             <input id="create_submit" type="submit">

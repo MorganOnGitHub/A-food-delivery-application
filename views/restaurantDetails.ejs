@@ -1,0 +1,31 @@
+<!-- views/restaurantDetails.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title><%= restaurant.name %> - Details</title>
+</head>
+<body>
+    <%- include('navbar') %> <!-- Navbar inclusion -->
+    <h1><%= restaurant.name %></h1>
+    <p><strong>Location:</strong> <%= restaurant.location %></p>
+    <p><strong>Phone Number:</strong> <%= restaurant.phone_number %></p>
+    <p><strong>Email:</strong> <%= restaurant.email %></p>
+
+    <h2>Opening Times</h2>
+    <ul>
+      <% for (let [day, time] of Object.entries(restaurant.openingTimes)) { %>
+        <li><strong><%= day %>:</strong> <%= time %></li>
+      <% } %>
+    </ul>
+
+    <!-- Fallback for missing opening times -->
+    <% if (!restaurant.openingTimes || Object.keys(restaurant.openingTimes).length === 0) { %>
+      <p>Opening times not available.</p>
+    <% } %>
+
+    <a href="/restaurants">Back to Restaurant List</a>
+</body>
+</html>

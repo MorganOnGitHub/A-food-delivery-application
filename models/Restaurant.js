@@ -1,4 +1,3 @@
-// models/restaurant.js
 const mongoose = require('mongoose');
 
 const restaurantSchema = new mongoose.Schema({
@@ -25,8 +24,26 @@ const restaurantSchema = new mongoose.Schema({
   cuisine: {
     type: String,
     required: true
+  },
+  address: {
+    type: String,
+    required: true
+  },
+  images: {
+    type: [String],
+    default: []  // Array of image URLs
+  },
+  openingTimes: {
+    type: Map,
+    of: String,  // Days of the week with times in "HH:MM - HH:MM" format
+    validate: {
+      validator: function (times) {
+        const timeFormat = /^([01]\d|2[0-3]):[0-5]\d - ([01]\d|2[0-3]):[0-5]\d$/;
+        return Array.from(times.values()).every(time => timeFormat.test(time));
+      },
+      message: 'Invalid time format. Use "HH:MM - HH:MM" format for opening and closing times.'
+    }
   }
 });
 
-// Check if the model already exists, and if not, create it
 module.exports = mongoose.models.Restaurant || mongoose.model('Restaurant', restaurantSchema);
