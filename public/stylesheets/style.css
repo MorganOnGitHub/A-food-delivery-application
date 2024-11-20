@@ -118,3 +118,65 @@ div{
     flex-direction: column;
     align-items: center;
 }
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+  }
+
+  #about {
+    text-align: center;
+    padding: 50px;
+    background-color: transparent;
+    margin: 20px;
+    border-radius: 8px;
+  }
+  
+  #about h1 {
+    color: lightblue;
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  #about p {
+    color: lightblue;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 24px;
+    color: lightblue;
+    margin-top: 40px;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+  }
+  
+  ul li {
+    display: inline-block;
+    margin: 10px 15px;
+  }
+  
+  ul li a {
+    text-decoration: none;
+    font-size: 16px;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    background-color: transparent;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  ul li a:hover {
+    background-color: #8c00ff;
+    color: white;
+  }
+  

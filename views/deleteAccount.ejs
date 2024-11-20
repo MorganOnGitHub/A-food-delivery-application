@@ -1,0 +1,118 @@
+<%- include('navbar') %>
+<style>
+    #delete-account-container {
+        max-width: 500px;
+        margin: 40px auto;
+        padding: 20px;
+        background: transparent;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .warning-message {
+        background: #fff3cd;
+        border: 1px solid #ffeeba;
+        padding: 15px;
+        border-radius: 4px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        font-weight: bold;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    .confirmation-checkbox {
+        margin: 20px 0;
+    }
+
+    .checkbox-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .checkbox-text {
+        margin-left: 8px;
+        color: #dc3545;
+    }
+
+    .button-group {
+        display: flex;
+        gap: 10px;
+    }
+
+    .delete-btn {
+        background: #dc3545;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 4px;
+        flex: 1;
+    }
+
+    .cancel-btn {
+        background: #6c757d;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 4px;
+        text-decoration: none;
+        flex: 1;
+        text-align: center;
+    }
+</style>
+
+<div id="delete-account-container">
+  <h2>Delete Account</h2>
+  <div class="warning-message">
+    <p>⚠️ Warning: Account Deletion</p>
+    <ul>
+      <li>This action permanently removes your account and all associated data</li>
+      <li>This action cannot be undone</li>
+      <li>Any active sessions will be terminated</li>
+    </ul>
+  </div>
+  
+  <form id="deleteAccountForm" action="/user/delete-request" method="POST">
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        required
+      />
+    </div>
+
+    <div class="confirmation-checkbox">
+      <label class="checkbox-container">
+        <input type="checkbox" id="confirmDelete" required />
+        <span class="checkbox-text">
+          I understand that this action is permanent and cannot be undone
+        </span>
+      </label>
+    </div>
+
+    <div class="button-group">
+      <button type="submit" class="delete-btn" id="deleteButton">Delete My Account</button>
+      <a href="/" class="cancel-btn">Cancel</a>
+    </div>
+  </form>
+</div>

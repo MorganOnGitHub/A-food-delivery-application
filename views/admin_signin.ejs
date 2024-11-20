@@ -1,15 +1,17 @@
 <%- include('navbar') %>
+
 <h1>Admin Sign In</h1>
-    <form action="/admin_signin" method="POST">
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" required>
 
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" required>
+<form action="/admin_signin" method="POST">
+  <label for="username">Username</label>
+  <input type="text" id="username" name="username" required>
 
-      <button type="submit">Sign In</button>
-    </form>
+  <label for="password">Password</label>
+  <input type="password" id="password" name="password" required>
 
-    <% if (message) { %>
-      <p class="error-message"><%= message %></p>
-    <% } %>
+  <button type="submit">Sign In</button>
+</form>
+
+<% if (message) { %>
+  <p class="error-message"><%= message || "" %></p>
+<% } %>
