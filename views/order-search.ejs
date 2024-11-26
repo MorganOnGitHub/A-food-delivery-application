@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Search Orders - FoodFaster.ai</title>
+</head>
+<body>
+    <%- include('navbar') %> <!-- Include Navbar -->
+    <h1>Search Orders</h1>
+
+    <!-- Order Search Form -->
+    <div class="search-container">
+        <form action="/orders/search" method="get">
+            <label for="productId">Search Orders by Product ID:</label>
+            <input type="text" id="productId" name="productId" placeholder="Enter product ID..." autocomplete="off" required>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <!-- Display Order Search Results -->
+    <% if (orders && orders.length > 0) { %>
+        <h3>Order Search Results:</h3>
+        <ul>
+            <% orders.forEach(order => { %>
+                <li>
+                    <strong>Customer Name:</strong> <%= order.customerName %><br>
+                    <strong>Product Name:</strong> <%= order.productId.name %><br>
+                    <strong>Quantity:</strong> <%= order.quantity %><br>
+                    <strong>Status:</strong> <%= order.status %>
+                </li>
+            <% }) %>
+        </ul>
+    <% } else if (message) { %>
+        <p><%= message %></p>
+    <% } %>
+</body>
+</html>
+

@@ -1,11 +1,28 @@
 const mongoose = require('mongoose');
 
+// Define the schema for menu items
+const menuItemSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  ingredients: {
+    type: [String],  // Array of ingredients
+    required: true
+  },
+  price: {
+    type: Number,
+    required: true
+  }
+});
+
 const restaurantSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
     minlength: 2,
-    maxlength: 50
+    maxlength: 50,
+    index: true  // Create index for text search
   },
   email: {
     type: String,
@@ -43,7 +60,11 @@ const restaurantSchema = new mongoose.Schema({
       },
       message: 'Invalid time format. Use "HH:MM - HH:MM" format for opening and closing times.'
     }
-  }
+  },
+  menu: [menuItemSchema]  // Menu items as an array of objects following the menuItemSchema
 });
+
+// Adding a text index for the 'name' field to support text search
+restaurantSchema.index({ name: 'text' });
 
 module.exports = mongoose.models.Restaurant || mongoose.model('Restaurant', restaurantSchema);
