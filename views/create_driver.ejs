@@ -1,30 +1,32 @@
 <%- include('navbar') %>
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Create Driver</title>
 </head>
 <body>
   <h1>Create Driver</h1>
   <form action="/create_driver" method="POST" enctype="multipart/form-data">
     <label for="name">Name:</label>
-    <input type="text" name="name" required><br>
+    <input type="text" id="name" name="name" required><br>
 
     <label for="email">Email:</label>
-    <input type="email" name="email" required><br>
+    <input type="email" id="email" name="email" required><br>
 
     <label for="phone_number">Phone Number:</label>
-    <input type="number" name="phone_number" required><br>
+    <input type="text" id="phone_number" name="phone_number" required><br>
 
     <label for="vehicle_make">Vehicle Make:</label>
-    <input type="text" name="vehicle_make" required><br>
+    <input type="text" id="vehicle_make" name="vehicle_make" required><br>
 
     <label for="vehicle_model">Vehicle Model:</label>
-    <input type="text" name="vehicle_model" required><br>
+    <input type="text" id="vehicle_model" name="vehicle_model" required><br>
 
     <label for="license_number">License Number:</label>
-    <input type="text" name="license_number" required><br>
+    <input type="text" id="license_number" name="license_number" required><br>
 
-    <label for="image">Profile Image:</label>
-    <input type="file" name="image"><br><br>
+    <label for="image">Upload Image:</label>
+    <input type="file" id="image" name="image"><br>
 
     <button type="submit">Create Driver</button>
   </form>

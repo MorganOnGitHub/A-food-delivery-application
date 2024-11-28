@@ -133,6 +133,10 @@ body {
     margin: 20px;
     border-radius: 8px;
   }
+  #about-us{
+    margin-left:30%;
+    margin-right:30%;
+  }
   
   #about h1 {
     color: lightblue;
@@ -189,8 +193,21 @@ body {
 
 /* Dropdown button styling */
 .dropbtn {
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     background-color: transparent;
     color: white;
+=======
+=======
+>>>>>>> Stashed changes
+    margin-top:5px;
+    background-color: transparent;
+    color: white;
+    padding: 10px 15px;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     font-size: 16px;
     border: none;
     cursor: pointer;
@@ -199,12 +216,24 @@ body {
 /* Dropdown content (hidden by default) */
 .dropdown-content-signin,
 .dropdown-content-create {
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     margin-top:30px;
     display: flex;
     flex-direction: column;
     visibility: hidden;
     position: absolute;
     background-color: transparent;
+=======
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+>>>>>>> Stashed changes
+=======
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+>>>>>>> Stashed changes
     min-width: 150px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -213,7 +242,15 @@ body {
 /* Links inside the dropdown */
 .dropdown-content-signin a,
 .dropdown-content-create a {
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     color: white;
+=======
+    color: black;
+>>>>>>> Stashed changes
+=======
+    color: black;
+>>>>>>> Stashed changes
     padding: 10px 15px;
     text-decoration: none;
     display: block;
@@ -222,6 +259,8 @@ body {
 /* Change color on hover */
 .dropdown-content-signin a:hover,
 .dropdown-content-create a:hover {
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     background-color: #8c00ff;
 }
 
@@ -230,10 +269,26 @@ body {
 .dropdown:hover .dropdown-content-create {
     display: block;
     visibility: visible;
+=======
+=======
+>>>>>>> Stashed changes
+    background-color: #ddd;
+}
+
+/* Show the dropdown content when hovering over the button */
+.dropdown:hover .dropdown-content-signin,
+.dropdown:hover .dropdown-content-create {
+    display: block;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 }
 
 /* Change button background on hover */
 .dropdown:hover .dropbtn {
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     background-color: #ddd;
 }
 
@@ -243,3 +298,14 @@ div:not(.dropdown-content-signin):not(.dropdown-content-create) {
     flex-direction: column;
     align-items: center;
 }
+=======
+=======
+>>>>>>> Stashed changes
+    background-color: transparent;
+    color:white;
+}
+
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes

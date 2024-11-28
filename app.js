@@ -124,6 +124,7 @@ app.get('/error', (req, res) => res.render('error'));
 app.get('/admin_signin', (req, res) => {res.render('admin_signin', { message: '' });});
 app.get('/search', (req,res) => res.render('search'));
 app.get('/change-password', (req, res) => res.render('change-password'));
+app.get('/admin_index', (req,res) => res.render('admin_index'));
 
 // search functionality
 // Route to search for a user by email
@@ -246,7 +247,7 @@ app.post('/admin_signin', async (req, res) => {
     req.session.userId = admin._id;  // Set the session for the logged-in user
     req.session.role = 'admin';       // Store 'admin' role
 
-    res.redirect('/'); // Redirect to the admin home page or dashboard
+    res.redirect('/admin_index'); // Redirect to the admin home page or dashboard
   } catch (err) {
     console.error('Error during admin sign-in:', err);
     res.status(500).render('error', { message: 'Internal server error' });
