@@ -195,9 +195,12 @@ body {
 .dropbtn {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     background-color: transparent;
     color: white;
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     margin-top:5px;
@@ -205,6 +208,9 @@ body {
     color: white;
     padding: 10px 15px;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -218,12 +224,18 @@ body {
 .dropdown-content-create {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     margin-top:30px;
     display: flex;
     flex-direction: column;
     visibility: hidden;
     position: absolute;
     background-color: transparent;
+=======
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+>>>>>>> Stashed changes
 =======
     display: none;
     position: absolute;
@@ -244,7 +256,11 @@ body {
 .dropdown-content-create a {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     color: white;
+=======
+    color: black;
+>>>>>>> Stashed changes
 =======
     color: black;
 >>>>>>> Stashed changes
@@ -261,6 +277,7 @@ body {
 .dropdown-content-create a:hover {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     background-color: #8c00ff;
 }
 
@@ -272,6 +289,8 @@ body {
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     background-color: #ddd;
 }
 
@@ -280,6 +299,9 @@ body {
 .dropdown:hover .dropdown-content-create {
     display: block;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -287,6 +309,7 @@ body {
 
 /* Change button background on hover */
 .dropdown:hover .dropbtn {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
     background-color: #ddd;
@@ -301,11 +324,16 @@ div:not(.dropdown-content-signin):not(.dropdown-content-create) {
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     background-color: transparent;
     color:white;
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes

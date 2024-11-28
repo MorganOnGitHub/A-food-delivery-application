@@ -124,7 +124,11 @@ app.get('/error', (req, res) => res.render('error'));
 app.get('/admin_signin', (req, res) => {res.render('admin_signin', { message: '' });});
 app.get('/search', (req,res) => res.render('search'));
 app.get('/change-password', (req, res) => res.render('change-password'));
+<<<<<<< Updated upstream
 app.get('/admin_index', (req,res) => res.render('admin_index'));
+=======
+app.get('/create_restaurant', (req,res) => res.render('create_restaurant'));
+>>>>>>> Stashed changes
 
 // search functionality
 // Route to search for a user by email
