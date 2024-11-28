@@ -180,3 +180,66 @@ body {
     color: white;
   }
   
+/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+/* Dropdown button styling */
+.dropbtn {
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content-signin,
+.dropdown-content-create {
+    margin-top:30px;
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+    position: absolute;
+    background-color: transparent;
+    min-width: 150px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content-signin a,
+.dropdown-content-create a {
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color on hover */
+.dropdown-content-signin a:hover,
+.dropdown-content-create a:hover {
+    background-color: #8c00ff;
+}
+
+/* Show dropdown content on hover */
+.dropdown:hover .dropdown-content-signin,
+.dropdown:hover .dropdown-content-create {
+    display: block;
+    visibility: visible;
+}
+
+/* Change button background on hover */
+.dropdown:hover .dropbtn {
+    background-color: #ddd;
+}
+
+/* General div styles (ensure dropdowns are not affected) */
+div:not(.dropdown-content-signin):not(.dropdown-content-create) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
