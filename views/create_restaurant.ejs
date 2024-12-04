@@ -1,31 +1,39 @@
-<%- include('admin_navbar') %>
-<div id="create">
-    <h2 id="create_title">Create a Restaurant</h2>
-    <p>Creating a restaurant will allow you to show restaurant details to food lovers.</p>
-    <form action="/create_restaurant" method="POST">
-        <br><br>
-        <label for="restaurant">Restaurant here</label>
-        <br><br>
-        <label for="name">Name</label>
-        <br><br>
-        <input id="name_restaurant" name="restaurantName" type="text" placeholder="John Doe"  pattern="[A-Za-z]{2,50}" required>
-        <br><br>
-        <label id="no_restaurant" for="Phone Number">Phone Number</label>
-        <br><br>
-        <input type="text" name="restaurantPhone" placeholder="+353" required pattern="[0-9]{10}">
-        <br><br>
-        <label for="email">Email</label>
-        <br><br>
-        <input type="email" name="restaurantEmail" placeholder="email@example.ie" required>
-        <br><br>
-        <label for = "location">Location</label>
-        <br><br>
-        <input type = "text" name="restaurantLocation" placeholder="Co.Cork" required>
-        <br><br>
-        <label for="submit">Create restaurant</label>
-        <input id="create_submit" type="submit">
-        <a href="index">Home</a>
-    </form> 
-    <br>
-    
-</div>
+<%- include('navbar') %>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Restaurant</title>
+</head>
+<body>
+  <h2>Create Restaurant</h2>
+  
+  <form action="/create_restaurant" method="POST">
+    <div>
+      <label for="name">Restaurant Name:</label>
+      <input type="text" id="name" name="name" required>
+    </div>
+    <br><br>
+    <div>
+      <label for="phone_number">Phone Number:</label>
+      <input type="text" id="phone_number" name="phone_number" required pattern="^[0-9]{10}$" title="Phone number must be 10 digits.">
+    </div>
+    <br><br>
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+    <br><br>
+    <div>
+      <label for="location">Location:</label>
+      <input type="text" id="location" name="location" required>
+    </div>
+    <br><br>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+    </div>
+    <br><br>
+    <button type="submit">Create Restaurant</button>
+  </form>
+</body>
+</html>

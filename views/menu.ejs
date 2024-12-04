@@ -1,0 +1,25 @@
+<%- include('navbar') %>
+<h2>Browse Menu</h2>
+<ul>
+    <% products.forEach(product => { %>
+        <div class="product-card">
+          <h3><%= product.name %></h3>
+          <img src="<%= product.image %>" alt="<%= product.name %> image" style="width:200px; height:auto;">
+          <p>Price: €<%= product.price %></p>
+          <form action="/add-to-basket" method="POST">
+            <input type="hidden" name="productId" value="<%= product._id %>">
+            <label for="quantity">Quantity:</label>
+            <input type="number" name="quantity" value="1" min="1">
+            <button type="submit">Add to Basket</button>
+          </form>
+        </div>
+        <br><br>
+    <% }) %>
+</ul>
+<!-- Inside menu.ejs -->
+
+<!-- Button to delete all products -->
+<form action="/delete-all-products" method="POST">
+    <button type="submit" class="btn btn-danger">Delete All Products</button>
+  </form>
+  

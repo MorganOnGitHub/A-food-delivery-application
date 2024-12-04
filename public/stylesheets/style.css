@@ -49,15 +49,22 @@ p {
     color: lightblue;
     text-decoration:none;
     background-color: transparent;
-    padding:2rem;
     margin: auto;
     text-align: center;
+}
+#back-to-home{
+    margin-top:1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 header{
     text-decoration: none;
 }
+h3{
+    color:#8c00ff;
+}
 a{
-    margin: 1rem;
     font-size: medium;
     text-decoration: none;
     color: white;
@@ -133,7 +140,10 @@ body {
     margin: 20px;
     border-radius: 8px;
   }
-  
+  #about-us{
+    margin-left:30%;
+    margin-right:30%;
+  }
   #about h1 {
     color: lightblue;
     font-size: 36px;
@@ -243,7 +253,11 @@ body {
       cursor: pointer;
       padding: 10px 20px;
   }
-  
+  .dropbtn:hover{
+    background-color: #8c00ff;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+  }
 
   .dropdown-content {
       display: none;
@@ -256,7 +270,6 @@ body {
       padding: 10px 0;
       border-radius: 8px;
   }
-  
 
   .dropdown-content a {
       color: white;
@@ -265,7 +278,7 @@ body {
       display: block;
       text-align: left;
   }
-  
+
   .dropdown-content a:hover {
       background-color: #8c00ff;
   }
@@ -282,3 +295,8 @@ body {
       font-weight: 100;
   }
   
+  .product-card{
+    display: flex;
+    flex-direction: column;
+
+  }

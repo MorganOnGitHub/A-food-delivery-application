@@ -1,0 +1,14 @@
+<%- include('navbar') %>
+<h2>Checkout</h2>
+<form action="/checkout" method="POST">
+  <label for="cardNumber">Card Number</label>
+  <input type="text" name="cardNumber" required>
+  
+  <label for="expiryDate">Expiry Date</label>
+  <input type="text" name="expiryDate" required>
+  
+  <label for="cvv">CVV</label>
+  <input type="text" name="cvv" required>
+
+  <button type="submit">Complete Purchase</button>
+</form>
