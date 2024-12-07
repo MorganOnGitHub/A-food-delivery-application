@@ -7,21 +7,28 @@
 <body>
     <h1>Your Basket</h1>
 
-    <% if (basket && basket.length > 0) { %>
-        <ul>
-            <% basket.forEach(function(item) { %>
-                <li>
-                    Product: <%= item.product %>, Quantity: <%= item.quantity %>
-                </li>
-            <% }) %>
-        </ul>
-    <% } else { %>
-        <p>Your basket is empty.</p>
-    <% } %>
-
-  <form action="/empty-basket" method="POST">
-    <button type="submit">Empty Basket</button>
-  </form>
-  
+    <div class="basket-form">
+        <% basket.items.forEach(item => { %>
+            <h2><%= item.product.name %></h2>
+            <p>
+                Quantity: <%= item.quantity %>
+                <br>
+                Price: €<%= item.product.price * item.quantity %>
+            </p>
+            <form action="/remove-from-basket" method="POST">
+                <input type="hidden" name="productId" value="<%= item.product._id %>">
+                <button type="submit">Remove</button>
+            </form>
+        <% }); %>
+        <p>Total Price: €<%= totalPrice %></p>
+        <br>
+        <form action="/empty-basket" method="POST">
+            <button type="submit">Empty Basket</button>
+        </form>
+        <br><br>
+        <form action="/checkout" method="GET">
+            <button type="submit">Continue to Checkout</button>
+        </form>
+    </div>
 </body>
 </html>

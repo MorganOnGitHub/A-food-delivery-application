@@ -1,17 +1,17 @@
 <%- include('admin_navbar') %>
 <body>
     <h1>Search for User</h1>
-    <form action="/search/email" method="get">
+    <form action="/search/email" method="GET">
+        <label for="email">Search by Email:</label>
         <input type="email" name="email" placeholder="Enter email" required>
         <button type="submit">Search</button>
         
     </form>
+    <br><br>
     <form action="/search/name" method="GET">
         <label for="name">Search by Name:</label>
         <input type="text" name="name" id="name" required>
         <button type="submit">Search</button>
       </form>
-      
-    
   </body>
   </html>
