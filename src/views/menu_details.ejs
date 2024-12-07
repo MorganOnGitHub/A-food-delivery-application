@@ -1,0 +1,22 @@
+<%- include('navbar') %>
+<div class="menu-container">
+    <h1><%= menu.name %></h1>
+    
+    <div class="menu-items">
+        <% menu.items.forEach(item => { %>
+            <div class="menu-item <%= item.offers.length > 0 ? 'has-offer' : '' %>">
+                <h3><%= item.name %></h3>
+                <p><%= item.description %></p>
+                <p class="price">$<%= item.price.toFixed(2) %></p>
+                
+                <% if (item.offers.length > 0) { %>
+                    <div class="offers">
+                        <% item.offers.forEach(offer => { %>
+                            <p class="offer-text"><%= offer.description %></p>
+                        <% }) %>
+                    </div>
+                <% } %>
+            </div>
+        <% }) %>
+    </div>
+</div>
