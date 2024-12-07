@@ -293,6 +293,27 @@ app.get('/checkout', ensureAuthenticated, fetchUserWithBasket, async (req, res) 
   }
 });
 
+// Driver routes
+app.get('/drivers', async (req, res) => {
+  try {
+      const { sort = 'asc', searchTerm } = req.query;
+      let query = {};
+      
+      if (searchTerm) {
+          query = {
+              $or: [
+                  { name: { $regex: searchTerm, $options: 'i' } },
+                  { phone_number: { $regex: searchTerm, $options: 'i' } }
+              ]
+          };
+      }
+      
+      const drivers = await Driver.find(query).sort({ name: sort });
+      res.render('drivers', { drivers });
+  } catch (err) {
+      res.status(500).render('error', { message: 'Error fetching drivers' });
+  }
+});
 
 // Create User with Basket
 app.post('/create_user', upload.single('image'), async (req, res) => {
