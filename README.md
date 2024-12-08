@@ -1,4 +1,4 @@
-# Foodfaster.ai Account Management
+# Foodfaster Account Management
 This is a simple Node.js and Express application for managing user accounts. The app allows you to create, view, edit, and delete user accounts, and stores the data in a MongoDB database. It uses EJS for rendering views and Mongoose for interacting with MongoDB.
 
 # Features
