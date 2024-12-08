@@ -1,0 +1,23 @@
+<!-- views/searchResults.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style.css">
+  <title>Search Results</title>
+</head>
+<body>
+  <h1>Search Results for "<%= cuisine %>"</h1>
+  <ul>
+    <% if (restaurants.length > 0) { %>
+      <% restaurants.forEach(restaurant => { %>
+        <li><%= restaurant.name %> - <%= restaurant.cuisine %></li>
+      <% }) %>
+    <% } else { %>
+      <p>No restaurants found for this cuisine.</p>
+    <% } %>
+  </ul>
+  <a href="/restaurants/search">Back to Search</a>
+</body>
+</html>

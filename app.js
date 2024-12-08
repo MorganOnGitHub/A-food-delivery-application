@@ -348,6 +348,38 @@ app.post('/create_user', upload.single('image'), async (req, res) => {
   }
 });
 
+// Search for orders by product ID
+app.get('/search/orders', async (req, res) => {
+  const { productId } = req.query;
+
+  try {
+    // Validate product ID format
+    if (!mongoose.Types.ObjectId.isValid(productId)) {
+      return res.render('order-search', {
+        orders: [],
+        message: 'Invalid product ID format',
+      });
+    }
+
+    // Find orders associated with the product
+    const orders = await Order.find({ productId }).populate('productId', 'name price');
+    if (orders.length === 0) {
+      return res.render('order-search', {
+        orders: [],
+        message: 'No orders found for the given product ID',
+      });
+    }
+
+    res.render('order-search', { orders, message: null });
+  } catch (error) {
+    console.error('Error searching orders:', error);
+    res.render('order-search', {
+      orders: [],
+      message: 'An error occurred while searching orders',
+    });
+  }
+});
+
 
 // Route to search for a user by email
 app.get('/search/email', async (req, res) => {
@@ -464,6 +496,7 @@ app.get('/menu', ensureAuthenticated, async (req, res) => {
     res.status(500).render('error', { message: 'Error fetching products' });
   }
 });
+
 
 app.post('/delete-all-products',checkAdmin, async (req, res) => {
   try {
@@ -771,6 +804,55 @@ app.get('/orders', async (req, res) => {
     res.status(500).render('error', { message: 'Internal server error' });
   }
 });
+
+// Route to search orders by customer
+app.get('/search/orders/customer', async (req, res) => {
+  const { customerId } = req.query;
+
+  try {
+    const orders = await Order.find({ user: customerId })
+      .populate('user', 'name email') // Populate user details
+      .populate({
+        path: 'products.product',
+        populate: { path: 'restaurant', select: 'name' } // Populate product and restaurant details
+      });
+
+    if (orders.length === 0) {
+      return res.render('error', { message: 'No orders found for the specified customer.' });
+    }
+
+    res.render('orderList', { orders });
+  } catch (err) {
+    console.error('Error searching orders by customer:', err);
+    res.status(500).render('error', { message: 'Internal server error' });
+  }
+});
+
+// Route to search orders by restaurant
+app.get('/search/orders/restaurant', async (req, res) => {
+  const { restaurantId } = req.query;
+
+  try {
+    const orders = await Order.find({
+      'products.product': { $in: await Product.find({ restaurant: restaurantId }).select('_id') }
+    })
+      .populate('user', 'name email') // Populate user details
+      .populate({
+        path: 'products.product',
+        populate: { path: 'restaurant', select: 'name' } // Populate product and restaurant details
+      });
+
+    if (orders.length === 0) {
+      return res.render('error', { message: 'No orders found for the specified restaurant.' });
+    }
+
+    res.render('orderList', { orders });
+  } catch (err) {
+    console.error('Error searching orders by restaurant:', err);
+    res.status(500).render('error', { message: 'Internal server error' });
+  }
+});
+
 
 
 

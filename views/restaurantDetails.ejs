@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title><%= restaurant.name %> - Details</title>
+</head>
+<body>
+    <%- include('navbar') %> <!-- Navbar inclusion -->
+    <h1><%= restaurant.name %></h1>
+    <p><strong>Location:</strong> <%= restaurant.location %></p>
+    <p><strong>Phone Number:</strong> <%= restaurant.phone_number %></p>
+    <p><strong>Email:</strong> <%= restaurant.email %></p>
+
+    <h2>Opening Times</h2>
+    <ul>
+      <% for (let [day, time] of Object.entries(restaurant.openingTimes)) { %>
+        <li><strong><%= day %>:</strong> <%= time %></li>
+      <% } %>
+    </ul>
+
+    <!-- Fallback for missing opening times -->
+    <% if (!restaurant.openingTimes || Object.keys(restaurant.openingTimes).length === 0) { %>
+      <p>Opening times not available.</p>
+    <% } %>
+
+    <!-- Sorting Menu by Price -->
+    <h2>Menu</h2>
+    <% if (message) { %>
+        <p><%= message %></p>
+    <% } else { %>
+        <div class="sort-container">
+            <form action="/restaurants/<%= restaurant._id %>/menu/sort" method="get">
+                <label for="sortBy">Sort by Price:</label>
+                <select id="sortPrice" name="sortPrice">
+                    <option value="asc">Ascending</option>
+                    <option value="desc">Descending</option>
+                </select>
+                <button type="submit">Sort</button>
+            </form>
+        </div>
+
+        <!-- Displaying the Menu Items -->
+        <% if (menu && menu.length > 0) { %>
+            <ul>
+                <% menu.forEach(item => { %>
+                    <li>
+                        <strong><%= item.name %></strong><br>
+                        Ingredients: <%= item.ingredients.join(', ') %><br>
+                        Price: $<%= item.price %>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } else { %>
+            <p>No menu items available.</p>
+        <% } %>
+    <% } %>
+
+    <!-- Back Button -->
+    <a href="/restaurants">Back to Restaurant List</a>
+</body>
+</html>
