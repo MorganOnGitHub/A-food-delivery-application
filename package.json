@@ -1,9 +1,9 @@
 {
-  "name": "food_delivery_app",
+  "name": "foodfaster.ai",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "devStart": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +12,12 @@
   "dependencies": {
     "ejs": "^3.1.10",
     "express": "^4.21.1",
-    "mongoose": "^8.7.3"
+    "express-session": "^1.18.1",
+    "mongodb": "^6.10.0",
+    "mongoose": "^8.8.4",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
   }
 }

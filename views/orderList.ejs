@@ -1,0 +1,29 @@
+<%- include('admin_navbar') %>
+<head>
+  <title>Order List</title>
+</head>
+<body>
+  <h1>Order List</h1>
+
+  <% if (message) { %>
+    <p><strong><%= message %></strong></p>
+  <% } %>
+    <ul>
+      <% orders.forEach(order => { %>
+        <li>
+          <p><strong>Customer:</strong> <%= order.user.name %> (<%= order.user.email %>)</p>
+          <p><strong>Products:</strong></p>
+          <ul>
+            <% order.products.forEach(item => { %>
+              <li><%= item.product.name %> - €<%= item.product.price %> x <%= item.quantity %></li>
+            <% }) %>
+          </ul>
+          <p><strong>Total Price:</strong> €<%= order.totalPrice %></p>
+          <p><strong>Status:</strong> <%= order.status %></p>
+          <p><strong>Driver:</strong> <%= order.assignedDriver ? order.assignedDriver.name : 'Not Assigned' %></p>
+        </li>
+      <% }) %>
+    </ul>
+
+</body>
+</html>

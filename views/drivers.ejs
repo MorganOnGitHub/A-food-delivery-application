@@ -1,0 +1,23 @@
+<%- include('navbar') %>
+<div class="drivers-container">
+    <h1>Drivers</h1>
+    <div class="search-sort">
+        <form action="/drivers" method="GET">
+            <input type="text" name="searchTerm" placeholder="Search drivers...">
+            <select name="sort">
+                <option value="asc">Name A-Z</option>
+                <option value="desc">Name Z-A</option>
+            </select>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <div class="drivers-list">
+        <% drivers.forEach(driver => { %>
+            <div class="driver-card">
+                <h3><%= driver.name %></h3>
+                <p>Phone: <%= driver.phone_number %></p>
+                <p>Status: <%= driver.available ? 'Available' : 'On Delivery' %></p>
+            </div>
+        <% }) %>
+    </div>
+</div>

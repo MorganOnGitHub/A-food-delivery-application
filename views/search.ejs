@@ -1,19 +1,17 @@
-<!-- views/search.ejs -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/style.css">
-  <title>Search Restaurants</title>
-</head>
+<%- include('admin_navbar') %>
 <body>
-  <h1>Search for a Restaurant by Cuisine</h1>
-  <form action="/restaurants/search" method="GET">
-    <input type="text" name="cuisine" id="cuisineInput" placeholder="Enter cuisine type..." autocomplete="off">
-    <div id="suggestions" class="suggestions-box"></div>
-    <button type="submit">Search</button>
-  </form>
-  <script src="/js/search.js"></script>
-</body>
-</html>
+    <h1>Search for User</h1>
+    <form action="/search/email" method="GET">
+        <label for="email">Search by Email:</label>
+        <input type="email" name="email" placeholder="Enter email" required>
+        <button type="submit">Search</button>
+        
+    </form>
+    <br><br>
+    <form action="/search/name" method="GET">
+        <label for="name">Search by Name:</label>
+        <input type="text" name="name" id="name" required>
+        <button type="submit">Search</button>
+      </form>
+  </body>
+  </html>

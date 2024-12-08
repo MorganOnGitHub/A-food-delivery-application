@@ -1,44 +1,39 @@
 <%- include('navbar') %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/style.css">
-    <title>Create User</title>
-</head>
-<body>
-    <div id="create">
-        <h2 id="create_title">Create User</h2>
-        <p>Create a User here.</p>
-        
-        <!-- Update action to post to the correct route -->
-        <form action="/users/create_user" method="POST">
-            <br><br>
-            <!-- Name Field -->
-            <label for="name">Name</label>
-            <br><br>
-            <input id="name" name="name" type="text" placeholder="John Doe" pattern="[A-Za-z ]{2,30}" required>
-            <br><br>
+<div id="create">
+    <h2 id="create_title">Create User</h2>
+    <form action="/create_user" method="POST" enctype="multipart/form-data">
+        <label for="name">Name</label>
+        <br><br>
+        <input id="name_booking" name="usersName" type="text" placeholder="John Doe" pattern="[A-Za-z]{2,30}" required>
+        <br><br>
+        <label for="Username">Username</label>
+        <br><br>
+        <input id="username_booking" name="UserName" type="text" placeholder="John101" pattern="[A-Za-z0-9]{2,30}" required>
+        <br><br>
+        <label id="no_booking" for="Phone Number">Phone Number</label>
+        <br><br>
+        <input type="text" name="userPhone" placeholder="1234567890" pattern="[0-9]{10}" required>
+        <br><br>
+        <label for="email">Email</label>
+        <br><br>
+        <input type="email" name="userEmail" placeholder="email@example.ie" required>
+        <br><br>
+        <label for="password">Password</label>
+        <br><br>
+        <input type="password" name="userPassword" placeholder="Enter password" required>
+        <br><br>
+        <label for="confirm_password">Confirm Password</label>
+        <br><br>
+        <input type="password" name="confirmPassword" placeholder="Confirm password" required>
+        <br><br>
+        <label for="image">Profile Image</label>
+        <br><br>
+        <input type="file" name="image" accept="image/*" required>
+        <br><br>
+        <input id="create_submit" type="submit" value="Create User">
+        <a href="/">Home</a>
+    </form>
+    
+</div>
 
-            <!-- Phone Number Field -->
-            <label for="phone_number">Phone Number</label>
-            <br><br>
-            <input type="text" name="phone_number" placeholder="+353" pattern="[0-9]{10}" required>
-            <br><br>
-
-            <!-- Email Field -->
-            <label for="email">Email</label>
-            <br><br>
-            <input type="email" name="email" placeholder="email@example.ie" required>
-            <br><br>
-
-            <!-- Submit Button -->
-            <label for="submit">Create user</label>
-            <input id="create_submit" type="submit">
-            <a href="/">Home</a>
-        </form>
-        <br>
-    </div>
-</body>
-</html>
+  

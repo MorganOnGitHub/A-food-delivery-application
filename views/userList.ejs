@@ -1,0 +1,24 @@
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User List</title>
+</head>
+<body>
+  <h1>Users Found</h1>
+  <ul>
+    <% users.forEach(user => { %>
+      <li>
+        <p><strong>Name:</strong> <%= user.name %></p>
+        <p><strong>Email:</strong> <%= user.email %></p>
+        <p><strong>Phone Number:</strong> <%= user.phone_number %></p>
+        <% if (user.image) { %>
+          <img src="/<%= user.image %>" alt="Profile Image" style="max-width:100px;">
+        <% } %>
+      </li>
+      <hr>
+    <% }) %>
+  </ul>
+  <a href="/">Back to Home</a>
+</body>
+</html>

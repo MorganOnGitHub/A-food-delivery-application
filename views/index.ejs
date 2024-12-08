@@ -1,29 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="eng">
+  <%- include('navbar') %>
+  <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/style.css">
-    <title>Home - FoodFaster.ai</title>
-</head>
-<body>
-    <%- include('navbar') %>
-    <h1>Welcome to FoodFaster.ai</h1>
-
-    <!-- Search bar for restaurant name -->
-    <div class="search-container">
-        <form action="/restaurants/search" method="get">
-            <label for="query">Search Restaurants:</label>
-            <input type="text" id="query" name="query" placeholder="Enter restaurant name..." autocomplete="off">
-            <button type="submit">Search</button>
-        </form>
+    <title>Home - Foodfaster</title>
+  </head>
+  <body>
+    <div id="about">
+      <h1>Welcome to Foodfaster</h1>
+      <div id="about-us">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </div>
     </div>
-
-    <!-- Links to user, restaurant, and order management pages -->
-    <a href="/users/create_user">Create User</a>
-    <a href="/restaurants/create_restaurant">Create Restaurant</a>
-    <a href="/restaurants/delete_restaurant">Delete Restaurant</a>
-    <a href="/orders/search">Search Orders</a> <!-- Link to the new order search page -->
 
     <!-- Display a list of restaurants and their opening times -->
     <h2>Our Featured Restaurants</h2>
@@ -42,5 +34,14 @@
             <% }) %>
         </ul>
     </div>
-</body>
+
+    <h2>Quick Links</h2>
+    <ul>
+      <li><a href="/user_signin">Sign In</a></li>
+      <li><a href="/create_user">Create an Account</a></li>
+      <li><a href="/change-password">Change Password</a></li>
+      <li><a href="/delete">Delete Account</a></li>
+    </ul>
+
+  </body>
 </html>

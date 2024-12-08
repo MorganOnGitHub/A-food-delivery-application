@@ -12,7 +12,7 @@
         <h2 id="create_title">Create a Restaurant</h2>
         <p>Creating a restaurant will allow you to show restaurant details to food lovers.</p>
         
-        <form id="restaurantForm" action="/restaurants/create_restaurant" method="POST">
+        <form id="restaurantForm" action="/create_restaurant" method="POST">
             <br><br>
             <label for="restaurant">Restaurant Details</label>
             <br><br>
@@ -118,7 +118,7 @@
             }
 
             if (!isValid) {
-                event.preventDefault();  // Prevent form submission if validation fails
+                event.preventDefault(); 
             }
         });
     </script>

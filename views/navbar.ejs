@@ -3,8 +3,26 @@
         <link rel="stylesheet" href="stylesheets/style.css">
         <nav>
             <a id="home_button" href="/">Home</a>
-            <a id="create_button" href="create_user">User Sign Up</a>
-            <a id="create_restaurant_button"href="create_restaurant">Restaurant Sign Up</a>
+            <a id="browse" href="menu">Browse</a>
+
+            
+            <div class="dropdown">
+                <button class="dropbtn">Sign In</button>
+                <div class="dropdown-content">
+                    <a id="signin_user" href="user_signin">User</a>
+                    <a id="signin_admin" href="admin_signin">Admin</a>
+                    <a id="signin_restaurant" href="restaurant_signin">Restaurant</a>
+                </div>
+            </div>
+           
+            <div class="dropdown">
+                <button class="dropbtn">Register</button>
+                <div class="dropdown-content">
+                    <a id="register_user" href="create_user">User</a>
+                    <a id="register_restaurant" href="create_restaurant">Restaurant</a>
+                    <a id="register_driver" href="create_driver">Driver</a>
+                </div>
+            </div>
         </nav>
     </header>
 </div>

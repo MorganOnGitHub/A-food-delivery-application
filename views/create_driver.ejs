@@ -1,0 +1,14 @@
+<%- include('navbar') %>
+<h2>Create a New Driver</h2>
+<form action="/create_driver" method="POST">
+  <label for="name">Driver Name:</label>
+  <input type="text" id="name" name="name" required><br><br>
+
+  <label for="phone_number">Phone Number:</label>
+  <input type="text" id="phone_number" name="phone_number" pattern="[0-9]{10}" required><br><br>
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required><br><br>
+
+  <button type="submit">Create Driver</button>
+</form>

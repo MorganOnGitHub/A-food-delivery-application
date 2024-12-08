@@ -13,69 +13,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Route to search for restaurants by name
-router.get('/search', async (req, res) => {
-  const { query } = req.query;  // The search query from the user
-  
-  try {
-    if (!query) {
-      return res.render('index', { restaurants: [] });  // If no query, return an empty list
-    }
 
-    // Optimized query using text search for partial matches and case insensitivity
-    const restaurants = await Restaurant.find({ 
-      $text: { $search: query, $caseSensitive: false } 
-    });
-
-    res.render('index', { restaurants });  // Render results to the homepage
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Error searching for restaurants');
-  }
-});
-
-// Route to view restaurant details by ID
-router.get('/:id', async (req, res) => {
-  try {
-    const restaurant = await Restaurant.findById(req.params.id);
-    if (!restaurant) {
-      return res.status(404).render('error', { message: 'Restaurant not found' });
-    }
-    res.render('restaurantDetails', { restaurant });
-  } catch (error) {
-    console.error(error);
-    res.status(500).render('error', { message: 'An error occurred while retrieving restaurant details' });
-  }
-});
-
-// Route to view restaurant's menu, with sorting functionality by ingredient
-router.get('/:id/menu/sort', async (req, res) => {
-  const { id } = req.params;  // Use `id` from the URL path parameter
-  const { sortBy } = req.query; // 'ingredient' or other criteria
-
-  try {
-    const restaurant = await Restaurant.findById(id);
-
-    if (!restaurant || !restaurant.menu || restaurant.menu.length === 0) {
-      return res.render('restaurantDetails', { restaurant, menu: [], message: 'Menu is empty. Cannot sort.' });
-    }
-
-    let sortedMenu = [];
-    if (sortBy === 'ingredient') {
-      sortedMenu = restaurant.menu.sort((a, b) => {
-        const ingredientA = a.ingredients.join(', ').toLowerCase();
-        const ingredientB = b.ingredients.join(', ').toLowerCase();
-        return ingredientA.localeCompare(ingredientB);
-      });
-    }
-
-    res.render('restaurantDetails', { restaurant, menu: sortedMenu, message: null });
-
-  } catch (error) {
-    console.error('Error fetching restaurant:', error);
-    res.status(500).render('restaurantDetails', { message: 'Error fetching menu.' });
-  }
-});
 
 // Route to create a new restaurant - GET form page
 router.get('/create_restaurant', (req, res) => {
